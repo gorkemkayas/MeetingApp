@@ -1,0 +1,34 @@
+<!-- To serve user informations, we are calling to UserInfo model and we are adjusting the page title.-->
+@model UserInfo
+@{
+    ViewBag.Title = "Meeting Participation";
+}
+
+<h1 class="h4 text-center">Meeting Participation Form</h1>
+<!-- Saving inputs on UserInfo model and routing UserInfo model to Controllers/MeetingController.cs/[HttpPost] Apply Method-->
+<form method="post" action="/Meeting/Apply" novalidate>
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label">Phone</label>
+        <input asp-for="Phone" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="WillAttend" class="form-label">Will you attend ?</label>
+        <select asp-for="WillAttend" class="form-select">
+            <option value="true">Yes, I will.</option>
+            <option value="false">No, I won't.</option>
+            <option value="indecisive">I'm not sure.</option>
+        </select>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

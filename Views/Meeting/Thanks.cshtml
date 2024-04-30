@@ -1,0 +1,23 @@
+<!-- To serve user informations, we are calling to UserInfo model and we are adjusting the page title.-->
+@model UserInfo
+@{
+    ViewBag.Title = "Participation Summary";
+}
+<main class="text-center">
+<h1 class="h4">Meeting summary</h1>
+
+<!-- Check attendence-->
+@if(Model.WillAttend == "true")
+{
+    <p>We are so happy to see you @Model.Name! @ViewBag.NumberOfPeople people attend the meeting with you.</p>
+<a asp-controller="Meeting" asp-action="List" class="btn btn-outline-primary">List participants</a>
+}
+else
+{
+    <p>@Model.Name, We are sorry you did not attend.</p>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Application Form</a>
+}
+
+
+
+</main>

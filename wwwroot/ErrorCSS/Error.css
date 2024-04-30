@@ -1,0 +1,11 @@
+/* Adjusting input forms about for validation error. */
+.validation-summary-errors
+{
+    color: red;
+}
+
+.input-validation-error 
+{
+    color: red;
+    border: 1px solid;
+}

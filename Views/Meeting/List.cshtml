@@ -1,0 +1,59 @@
+<!-- Declaring List<UserInfo> model will used in List.cshtml and adjusting the page title.-->
+@model List<UserInfo>
+@{
+    ViewBag.Title = "Participants";
+}
+
+<main class="text-center">
+<h1 class="h4">Meeting Attendance list</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Participation status</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Identify counter to achive number of participants.-->
+        @{
+            int yesNumber = 0;
+            int noNumber = 0;
+            int indecisiveNumber = 0;
+        }
+        <!-- Adjusting the background colors according to UserInfo participate state. -->
+        @foreach(var user in Model)
+        {   
+            string status;
+            if (user.WillAttend == "true")
+            {   
+                yesNumber += 1;
+                status = "table-success";
+            }
+            else if(user.WillAttend == "false")
+            {   
+                noNumber += 1;
+                status = "table-danger";
+            }
+            else
+            {   
+                indecisiveNumber += 1;
+                status = "table-warning";
+            }
+            <tr class="@status">
+                <td>@user.Name</td>
+                <td>@user.WillAttend</td>
+                <!-- Serving button related individual details page.-->
+                <td><a href="/Meeting/Details/@user.Id" class="btn btn-sm btn-primary">Details</a></td>
+            </tr> 
+        }
+    </tbody>
+    
+</table>
+<div class="card">
+    <div class="card-body">
+        <span>Attendance: @yesNumber</span>
+    </div>
+</div>
+<a asp-controller="Home" asp-action="index" class="btn btn-outline-primary mt-3">Back</a>
+</main>

@@ -1,0 +1,20 @@
+<!-- To serve meeting informations, we are calling to MeetingInfo model and we are adjusting the page title.-->
+@model MeetingInfo
+@{
+    ViewBag.Title = "Meeting Application";
+    Layout = "_Layout2";
+}
+<!-- Meeting informations -->
+<main class="text-center">
+<h1 class="h4">@ViewBag.Greeting</h1>
+<p>Please report your meeting attendance status.</p>
+<div class="card my-2">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Location</li>
+        <li class="list-group-item">It will take place on @Model.Date.ToString("dd/MM/yyyy HH:mm:ss")</li>
+        <li class="list-group-item">@Model.NumberOfPeople Participant</li>
+    </ul>
+</div>
+<!-- Routing informations to Views/Meeting/Apply.cshtml -->
+<a asp-controller="Meeting" asp-action="Apply" class="btn btn-sm btn-outline-primary">Apply</a>
+</main>

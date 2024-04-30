@@ -1,0 +1,39 @@
+<!-- To serve user informations, we are calling to UserInfo model and we are adjusting the page title.-->
+@model UserInfo
+@{
+    ViewBag.Title = "Application detail";
+}
+
+<!-- Adjusting badge gives information attendance state.-->
+<main class="text-center">
+    <h1 class="h4">Application Detail</h1>
+    <p> 
+        @{
+            string status;
+            if (@Model.WillAttend == "true"){   
+                status = "primary";
+                <p>
+                    <span class="badge text-bg-@status">Accepted</span>
+                </p>
+            }
+            else if(@Model.WillAttend == "false")
+            { 
+                status = "danger";
+                <p>
+                    <span class="badge text-bg-@status">Refused</span>
+                </p>
+            }
+            else
+            {
+                status = "warning";
+                <p>
+                    <span class="badge text-bg-@status">indecisive</span>
+                </p>
+            }
+        }
+    </p>
+    <p>Name: @Model.Name</p>
+    <p>Email: @Model.Email</p>
+    <p>Phone: @Model.Phone</p>
+    <a asp-controller="Meeting" asp-action="List" class="btn btn-outline-@status">Back</a>
+</main>
